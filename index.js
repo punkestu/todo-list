@@ -32,6 +32,12 @@ app.post("/new", function(req,res){
     }
 });
 
+app.get("/delete/:id", function (req,res) {
+    const id = req.params.id;
+    todo_m.delete(id);
+    return res.redirect("/");
+});
+
 app.get("/toggle/:id", function (req,res){
     const id = req.params.id;
     const todo = todo_m.load({id})[0];

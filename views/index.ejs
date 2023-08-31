@@ -32,7 +32,7 @@
             background-color: limegreen;
             color: beige;
         }
-        .todo form button{
+        .todo .action{
             background: none;
             border: beige solid medium;
             cursor: pointer;
@@ -40,6 +40,8 @@
             padding: 0.5rem 1rem;
             border-radius: 1rem;
             text-transform: capitalize;
+            text-decoration: none;
+            margin: 0 0.3rem;
         }
         .desc{
             margin-top: 0.5rem;
@@ -92,9 +94,14 @@
                         <%= todo.description%>
                     </p>
                 </div>
-                <form action="/toggle/<%=todo.id%>">
-                    <button type="submit"><%= todo.state%></button>
-                </form>
+                <div>
+                    <a class="action" href="/toggle/<%=todo.id%>">
+                        <%= todo.state%>
+                    </a>
+                    <a class="action" href="/delete/<%=todo.id%>">
+                        delete
+                    </a>
+                </div>
             </div>
         <%})%>
     </div>

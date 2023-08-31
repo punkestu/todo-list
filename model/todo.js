@@ -45,3 +45,8 @@ exports.load = function ({id, state}){
         return data.filter((datum)=> datum.id === parseInt(id));
     }
 }
+exports.delete = function(id){
+    const data = JSON.parse(fs.readFileSync(__dirname + "/../repo/dummy.json").toString());
+    const deleted = data.filter((datum) => datum.id !== parseInt(id));
+    fs.writeFileSync(repo, JSON.stringify(deleted));
+}
