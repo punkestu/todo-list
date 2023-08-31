@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO LIST</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: sans-serif;
+        }
+        body{
+            padding: 1rem 2rem;
+        }
+        #todos{
+            height: 50vh;
+            overflow-y: scroll;
+        }
+        .todo{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 25%;
+            margin: 1rem 0;
+            gap: 2rem;
+            border-radius: 1rem;
+        }
+        .todo.doing{
+            background-color: dodgerblue;
+            color: beige;
+        }
+        .todo.done{
+            background-color: limegreen;
+            color: beige;
+        }
+        .todo form button{
+            background: none;
+            border: beige solid medium;
+            cursor: pointer;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            text-transform: capitalize;
+        }
+        .desc{
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+        #new{
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 25%;
+            border-radius: 1rem;
+            background-color: dodgerblue;
+        }
+        #new label{
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: beige;
+        }
+        #new input{
+            border-radius: 10px;
+            border: beige solid medium;
+            padding: 5px 10px;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        #new button{
+            padding: 5px;
+            border-radius: 10px;
+            border: beige solid medium;
+            background-color: dodgerblue;
+            color: beige;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        #new button:hover{
+            background-color: beige;
+            color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="todos">
+        <% todoList.forEach((todo)=>{%>
+            <div class="todo <%= todo.state%>">
+                <div>
+                    <h1>
+                        <%= todo.head%>
+                    </h1>
+                    <p class="desc">
+                        <%= todo.description%>
+                    </p>
+                </div>
+                <form action="/toggle/<%=todo.id%>">
+                    <button type="submit"><%= todo.state%></button>
+                </form>
+            </div>
+        <%})%>
+    </div>
+    <form action="/new" method="post" id="new">
+        <label for="head">Header</label>
+        <input type="text" name="head" id="head" required>
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" required>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
